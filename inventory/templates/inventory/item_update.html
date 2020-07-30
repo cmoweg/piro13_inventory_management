@@ -1,0 +1,16 @@
+{% extends "inventory/layout.html" %}
+
+{% block content %}
+    <div id="head">
+        <div>Item Detail Update</div>
+        <div>상품 세부내용 수정 페이지 입니다. 여기 부연설명은 아무 이유 없고 그냥 예쁘라고 넣었어요.</div>
+    </div>
+
+    <div id="item-form">
+        <form action="" method="post" class="item_form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">저장</button>
+        </form>
+    </div>
+{% endblock %}

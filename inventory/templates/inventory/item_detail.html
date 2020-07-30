@@ -1,0 +1,42 @@
+{% extends "inventory/layout.html" %}
+
+{% block content %}
+    <div id="head">
+        <div>Item Detail</div>
+        <div>상품 세부내용 페이지 입니다. 여기 부연설명은 아무 이유 없고 그냥 예쁘라고 넣었어요.</div>
+    </div>
+
+    <div id="item-wrap">
+        <div id="item">
+            {% if item.image %}
+                <div class="image"><img src="{{ item.image.url }}" alt=""></div>
+            {% endif %}
+            <div class="text">
+                <div class="title">{{ item.title }}</div>
+                <div class="price">가격 : <span>{{ item.price }}</span></div>
+                <div class="amount">남은 수량 : <span>{{ item.amount }}</span></div>
+                <div class="content">제품 설명 : <span>{{ item.content|linebreaks }}</span></div>
+<!--                <div class="account">거래처 : <a href="{% url 'account_read' item.account.pk %}">{{ item.account }}</a></div>-->
+            </div>
+        </div>
+
+        <div id="buttons">
+            <div class="left">
+                <form action="{% url 'inventory:item_delete' item.pk %}" method="post">
+                    {% csrf_token %}
+                    <div class="delete"><input type="submit" value="삭제"></div>
+                </form>
+            </div>
+            <div class="right">
+                <form action="{% url 'inventory:item_list' %}">
+                    {% csrf_token %}
+                    <div class="list"><input type="submit" value="목록"></div>
+                </form>
+                <form action="{% url 'inventory:item_update' item.pk %}">
+                    {% csrf_token %}
+                    <div class="update"><input type="submit" value="수정"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

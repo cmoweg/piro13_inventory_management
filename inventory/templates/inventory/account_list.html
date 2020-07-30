@@ -1,0 +1,18 @@
+{% extends "inventory/layout.html" %}
+
+{% block content %}
+    <div id="head">
+        <div>Account List</div>
+        <div>거래처 목록 페이지 입니다. 여기 부연설명은 아무 이유 없고 그냥 예쁘라고 넣었어요.</div>
+    </div>
+
+    <div id="accounts">
+        {% for account in accounts %}
+            <div class="account">
+                <div class="name"><a href="{% url 'inventory:account_read' account.pk %}">{{ account.name }}</a></div>
+                <div class="call">{{ account.call }}</div>
+                <div class="address">{{ account.address }}</div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

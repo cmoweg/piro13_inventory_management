@@ -1,0 +1,24 @@
+{% extends "inventory/layout.html" %}
+
+{% block content %}
+    <div id="head">
+        <div>Item List</div>
+        <div>상품 목록 페이지 입니다. 여기 부연설명은 아무 이유 없고 그냥 예쁘라고 넣었어요.</div>
+    </div>
+
+    <div id="items">
+        {% for item in items %}
+            <div class="item">
+                {% if item.image %}
+                    <div class="image"><img src="{{ item.image.url }}" alt=""></div>
+                {% endif %}
+                <div class="title"><a href="{% url 'inventory:item_detail' item.pk %}">{{ item.title }}</a></div>
+                <div class="price">가격 : {{ item.price }}</div>
+                <div id="amount-{{ item.pk }}" class="amount">남은 수량 : {{ item.amount }}</div>
+
+                <input type="submit" onclick="clickButton({{ item.pk }},'plus')" value="+" class="button">
+                <input type="submit" onclick="clickButton({{ item.pk }},'minus')" value="-" class="button">
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "inventory/layout.html" %}
+
+{% block content %}
+    <div id="head">
+        <div>Account Detail</div>
+        <div>거래처 세부내용 페이지 입니다. 여기 부연설명은 아무 이유 없고 그냥 예쁘라고 넣었어요.</div>
+    </div>
+
+    <div id="wrap">
+        <div id="background">
+            <div id="account">
+                <div class="name">{{ account.name }}</div>
+                <div class="call">{{ account.call }}</div>
+                <div class="address">{{ account.address }}</div>
+            </div>
+            <div id="item">
+                <div class="list-name">거래 상품 목록</div>
+                <div class="list">
+                    {% for item in account.item_set.all %}
+                        <div><a href="{% url 'item_read' item.pk %}">{{ item.title }}</a></div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="account-buttons">
+        <div class="left">
+            <form action="{% url 'account_delete' account.pk %}" method="post">
+                {% csrf_token %}
+                <div class="delete"><input type="submit" value="삭제"></div>
+            </form>
+        </div>
+        <div class="right">
+            <form action="{% url 'account_list' %}">
+                {% csrf_token %}
+                <div class="list"><input type="submit" value="목록"></div>
+            </form>
+            <form action="{% url 'account_update' account.pk %}">
+                {% csrf_token %}
+                <div class="update"><input type="submit" value="수정"></div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

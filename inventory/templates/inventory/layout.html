@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Management</title>
+<!--    <link rel="stylesheet" href="{% static 'css/layout.css' %}?9">-->
+<!--    <link rel="stylesheet" href="{% static 'css/item_list.css' %}?7">-->
+<!--    <link rel="stylesheet" href="{% static 'css/item_read.css' %}?10">-->
+<!--    <link rel="stylesheet" href="{% static 'css/account_list.css' %}?7">-->
+<!--    <link rel="stylesheet" href="{% static 'css/account_read.css' %}?7">-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,600|Noto+Sans+KR:300,400,700,900=swap" rel="stylesheet">
+    {% block headAppend %}
+    {% endblock %}
+</head>
+<body>
+    <div id="header">
+        <div id="title">
+            <a href="{% url 'inventory:item_list' %}">
+                Inventory Manage
+            </a>
+        </div>
+        <div id="nav">
+            <ul>
+                <li><a href="{% url 'inventory:item_create' %}">상품 등록</a></li>
+                <li><a href="{% url 'inventory:account_create' %}">거래처 등록</a></li>
+                <li><a href="{% url 'inventory:account_list' %}">거래처 관리</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div id="body">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div id="footer">
+        <div>피로그래밍 | 13기 손민주</div>
+
+    </div>
+</body>
+</html>
