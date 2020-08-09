@@ -26,7 +26,7 @@ def amount_ajax(request):
         if item.amount > 0:
             item.amount -= 1
         else:
-            redirect('item_list')
+            redirect('inventory:item_list')
     item.save()
     ctx = {
         "amount": item.amount,
@@ -39,7 +39,7 @@ def item_read(request, pk):
     ctx = {
         "item": item
     }
-    return render(request, "inventory/item_read.html", ctx)
+    return render(request, "inventory/item_detail.html", ctx)
 
 
 def item_create(request):
@@ -47,7 +47,7 @@ def item_create(request):
         form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
             item = form.save()
-            return redirect("item_read", item.pk)
+            return redirect("inventory:item_read", item.pk)
     else:
         form = ItemForm()
         ctx = {
@@ -63,7 +63,7 @@ def item_update(request, pk):
         form = ItemForm(request.POST, request.FILES, instance=item)
         if form.is_valid():
             item = form.save()
-        return redirect("item_read", item.pk)
+        return redirect("inventory:item_read", item.pk)
 
     else:
         form = ItemForm(instance=item)
@@ -78,9 +78,9 @@ def item_delete(request, pk):
 
     if request.method == "POST":
         item.delete()
-        return redirect("item_list")
+        return redirect("inventory:item_list")
 
-    return redirect("item_read", item.pk)
+    return redirect("inventory:item_read", item.pk)
 
 def account_list(request):
     accounts = Account.objects.all()
@@ -103,7 +103,7 @@ def account_create(request):
         form = AccountForm(request.POST)
         if form.is_valid():
             account = form.save()
-            return redirect("account_read", account.pk)
+            return redirect("inventory:account_read", account.pk)
     else:
         form = AccountForm()
         ctx = {
@@ -119,7 +119,7 @@ def account_update(request, pk):
         form = AccountForm(request.POST, instance=account)
         if form.is_valid():
             account = form.save()
-        return redirect("account_read", account.pk)
+        return redirect("inventory:account_read", account.pk)
 
     else:
         form = AccountForm(instance=account)
@@ -134,6 +134,6 @@ def account_delete(request, pk):
 
     if request.method == "POST":
         account.delete()
-        return redirect("account_list")
+        return redirect("inventory:account_list")
 
-    return redirect("account_read", account.pk)
+    return redirect("inventory:account_read", account.pk)

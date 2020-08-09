@@ -12,7 +12,7 @@
                 {% if item.image %}
                     <div class="image"><img src="{{ item.image.url }}" alt=""></div>
                 {% endif %}
-                <div class="title"><a href="{% url 'inventory:item_detail' item.pk %}">{{ item.title }}</a></div>
+                <div class="title"><a href="{% url 'inventory:item_read' item.pk %}">{{ item.title }}</a></div>
                 <div class="price">가격 : {{ item.price }}</div>
                 <div id="amount-{{ item.pk }}" class="amount">남은 수량 : {{ item.amount }}</div>
 

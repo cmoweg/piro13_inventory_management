@@ -20,5 +20,5 @@ from django.shortcuts import redirect
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('inventory/', include("inventory.urls")),
-    path("", lambda req: redirect("item_list")),
+    path("", lambda req: redirect("inventory:item_list")),
 ]

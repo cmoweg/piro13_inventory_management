@@ -16,7 +16,7 @@
                 <div class="price">가격 : <span>{{ item.price }}</span></div>
                 <div class="amount">남은 수량 : <span>{{ item.amount }}</span></div>
                 <div class="content">제품 설명 : <span>{{ item.content|linebreaks }}</span></div>
-<!--                <div class="account">거래처 : <a href="{% url 'account_read' item.account.pk %}">{{ item.account }}</a></div>-->
+                <div class="account">거래처 : <a href="{% url 'inventory:account_read' item.account.pk %}">{{ item.account }}</a></div>
             </div>
         </div>
 
